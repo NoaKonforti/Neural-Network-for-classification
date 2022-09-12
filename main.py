@@ -14,22 +14,11 @@ from tests import loss_grad_test_b, loss_grad_test_w, SGD
 """
   load the data
      """
-#GMM = scipy.io.loadmat('GMMData.mat')
-#x_train = GMM.get('Yt')
-#y_train = np.transpose(GMM.get('Ct'))
-#x_test = GMM.get('Yv')
-#y_test = np.transpose(GMM.get('Cv'))
 Peaks = scipy.io.loadmat('PeaksData.mat')
 x_train = Peaks.get('Yt')
 y_train = np.transpose(Peaks.get('Ct'))
 x_test = Peaks.get('Yv')
 y_test = np.transpose(Peaks.get('Cv'))
-#SwissRoll = scipy.io.loadmat('SwissRollData.mat')
-#x_train = SwissRoll.get('Yt')
-#y_train = np.transpose(SwissRoll.get('Ct'))
-#x_test = SwissRoll.get('Yv')
-#y_test = np.transpose(SwissRoll.get('Cv'))
-
 
 """
   parameters
@@ -72,18 +61,18 @@ if __name__ == '__main__':
     Part 1 - the classifier and optimizer
     """
 # Create the data for small least squares example:
-    # X1 = np.random.normal(0, 1, (4, n))
-    # X2 = np.random.normal(10, 5, (4, n))
-    # Y1 = np.zeros(n)
-    # Y2 = np.ones(n)
-    # X = np.concatenate((X1, X2), axis=1)
-    # Y = np.concatenate((Y1, Y2))
-    # inds = np.arange(2 * n)
-    # np.random.shuffle(inds)
-    # X = X[:, inds]
-    # Y = Y[inds].astype(int)
-    # Y_hot = np.zeros((2 * n, 2))
-    # Y_hot[np.arange(2 * n), Y] = 1
+     X1 = np.random.normal(0, 1, (4, n))
+     X2 = np.random.normal(10, 5, (4, n))
+     Y1 = np.zeros(n)
+     Y2 = np.ones(n)
+     X = np.concatenate((X1, X2), axis=1)
+     Y = np.concatenate((Y1, Y2))
+     inds = np.arange(2 * n)
+     np.random.shuffle(inds)
+     X = X[:, inds]
+     Y = Y[inds].astype(int)
+     Y_hot = np.zeros((2 * n, 2))
+     Y_hot[np.arange(2 * n), Y] = 1
 
 # test the classifier and optimizer
     # myfun = SoftMaxRegression(n_classes=5)
@@ -104,21 +93,21 @@ if __name__ == '__main__':
     Part 2 - the neural network 
     """
 
-    # l_dense = Dense(units=3)
+     l_dense = Dense(units=3)
     # tests.jacobian_test(l_dense, Tanh(), X)
 
-    # l_res = Residual(units=3, activation_func=Tanh())
+     l_res = Residual(units=3, activation_func=Tanh())
     # tests.jacobian_test_residual(l_res, Tanh(), X)
 
     # model.jacobian_test(model.H(), model.dH(), 2)
 
     # tests.network_grad_test_w(model, x_train, y_train, 30)
 
-    # randomize = index = np.random.choice(x_train.shape[1], 200, replace=False)
-    # x_random_train = x_train[:, randomize]
-    # y_random_train = y_train[randomize]
-    # model.train(x_random_train, y_random_train, epochs=epochs, learning_rate=lr, batch_size=batch_size)
-    # test_score = model.predict(x_test, y_test)
-    # print( "test score = ", test_score)
+     randomize = index = np.random.choice(x_train.shape[1], 200, replace=False)
+     x_random_train = x_train[:, randomize]
+     y_random_train = y_train[randomize]
+     model.train(x_random_train, y_random_train, epochs=epochs, learning_rate=lr, batch_size=batch_size)
+     test_score = model.predict(x_test, y_test)
+     print( "test score = ", test_score)
     # predict = tests.SGD_network(model, x_test, y_test)
     # print("predict = ", predict)
